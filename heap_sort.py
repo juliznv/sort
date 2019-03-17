@@ -12,7 +12,7 @@ def heapify(arr,i,al):
         vmax=right
     if vmax!=i:
         arr[i],arr[vmax]=arr[vmax],arr[i]
-        heapify(arr,vmax,len(arr))
+        heapify(arr,vmax,al)
 
 def max_heap(arr):
     al=len(arr)
