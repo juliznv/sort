@@ -14,12 +14,9 @@ def generate_data(n):
 
 def test(n):
     data=generate_data(n)
-    datas=[]
+    datas=[copy.deepcopy(data) for _ in range(7)]
     correct=generate_data(20)
-    corrects=[]
-    for i in range(7):
-        datas.append(copy.deepcopy(data))
-        corrects.append(copy.deepcopy(correct))
+    corrects=[copy.deepcopy(correct) for _ in range(7)]
     print("正确检测:")
     print("原始数据:",correct)
     sort.bubble_sort(corrects[0])
@@ -61,7 +58,7 @@ def test(n):
     print("快速排序运行时间:",end-start)
 
     start=time.clock()
-    sort.merge_sort(datas[4])
+    datas[4]=sort.merge_sort(datas[4])
     end=time.clock()
     print("归并排序运行时间:",end-start)
 
@@ -74,6 +71,10 @@ def test(n):
     sort.heap_sort(datas[6])
     end=time.clock()
     print("堆排序运行时间:",end-start)
+    if datas[0]==datas[1]==datas[2]==datas[3]==datas[4]==datas[5]==datas[6]:
+        print("测试通过!")
+    else:
+        print("测试失败!")
     
 if __name__ == "__main__":
-    test(10000)
+    test(4096)
